@@ -2,7 +2,7 @@
 { pkgs, lib, config, ... }:
 with lib;
 {
-  options.modules.my-homeanager = {
+  options.modules.my-homemanager = {
     enable = mkOption { type = types.bool; default = false; };
   };
 
