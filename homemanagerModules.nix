@@ -1,5 +1,4 @@
 {
-  default = { };
   autorandr = import ./homemanager/autorandr/desktop.nix;
   bspwm = import ./homemanager/bspwm/bspwm.nix;
   dunst = import ./homemanager/dunst/dunst.nix;
