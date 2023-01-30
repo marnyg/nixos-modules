@@ -1,4 +1,3 @@
-{ home-manager, homeManagerModules,  ... }:
 { pkgs, lib, config, ... }:
 with lib;
 {
@@ -8,12 +7,9 @@ with lib;
 
   config = mkIf config.modules.my-homemanager.enable
     {
-      import = [ home-manager ];
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
       #home-manager.extraSpecialArgs = { inherit username; };
-      home-manager.users.nixos.imports = [
-        homeManagerModules
-      ];
+      home-manager.users.nixos.imports = builtins.attrValuesimport import ./homemanagerModules.nix;
     };
 }

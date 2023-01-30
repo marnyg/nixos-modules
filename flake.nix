@@ -11,10 +11,30 @@
   outputs = { self, nixpkgs, my-nvim, flake-utils, home-manager }:
     flake-utils.lib.eachDefaultSystem (system:
       {
-        nixosModules = (import ./nixosModules.nix {
-          my-nvim-module = my-nvim.nixosModule2."${system}";
-          inherit home-manager;
-        });
+        hmModules = {
+          autorandr = import ./homemanager/autorandr/desktop.nix;
+          bspwm = import ./homemanager/bspwm/bspwm.nix;
+          dunst = import ./homemanager/dunst/dunst.nix;
+          firefox = import ./homemanager/firefox.nix;
+          git = import ./homemanager/git.nix;
+          kitty = import ./homemanager/kitty.nix;
+          newsboat = import ./homemanager/newsboat.nix;
+          polybar = import ./homemanager/polybar/polybar.nix;
+          xmonad = import ./homemanager/xmonad;
+          zellij = import ./homemanager/zellij.nix;
+          zsh = import ./homemanager/zsh.nix;
+
+        };
+        nixosModules = {
+          syncthing = import ./systemModules/syncthingService.nix;
+          tailscale = import ./systemModules/tailscaleService.nix;
+          nvim = my-nvim.nixosModule2."${system}";
+          home-manager-module = home-manager.nixosModules.home-manager;
+          my-homemanager = import ./systemModules/my-homemanager.nix;
+        };
+        #(import ./nixosModules.nix {
+        #  my-nvim-module = my-nvim.nixosModule2."${system}";
+        #});
         devShells = import ./flakeUtils/shell.nix (import nixpkgs { inherit system; });
         checks = import ./flakeUtils/checks.nix (import nixpkgs { inherit system; });
         formatter = nixpkgs.legacyPackages.${system}.nixpkgs-fmt;
