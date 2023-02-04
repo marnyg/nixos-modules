@@ -29,12 +29,7 @@
           syncthing = import ./systemModules/syncthingService.nix;
           tailscale = import ./systemModules/tailscaleService.nix;
           nvim = my-nvim.nixosModule2."${system}";
-          home-manager-module = home-manager.nixosModules.home-manager;
-          my-homemanager = import ./systemModules/my-homemanager.nix;
         };
-        #(import ./nixosModules.nix {
-        #  my-nvim-module = my-nvim.nixosModule2."${system}";
-        #});
         devShells = import ./flakeUtils/shell.nix (import nixpkgs { inherit system; });
         checks = import ./flakeUtils/checks.nix (import nixpkgs { inherit system; });
         formatter = nixpkgs.legacyPackages.${system}.nixpkgs-fmt;

@@ -34,7 +34,7 @@ with lib;
     xsession.enable = true;
     xsession.initExtra = ''
       ${pkgs.autorandr}/bin/autorandr --change
-      ${pkgs.feh}/bin/feh --bg-fill ${./../../../..}/bg.jpg
+      ${pkgs.feh}/bin/feh --bg-fill ${./.}/bg.jpg
     '';
     # xsession.windowManager.command = "…";
     xsession.windowManager.bspwm.enable = true;
