@@ -23,7 +23,10 @@
           xmonad = import ./homemanager/xmonad;
           zellij = import ./homemanager/zellij.nix;
           zsh = import ./homemanager/zsh.nix;
-
+          spotifyd = import ./homemanager/spotifyd.nix;
+          other = import ./homemanager/other.nix;
+          myPackages = import ./homemanager/myPackages.nix;
+          cloneDefaultRepos = import ./homemanager/cloneDefaultRepos.nix;
         };
         nixosModules = {
           syncthing = import ./systemModules/syncthingService.nix;
